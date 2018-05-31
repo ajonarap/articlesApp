@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ClientArticleApp.localhost.ArticleDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Unpublished articles</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tags)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @foreach (var tag in item.Tags)
+                {
+                    @Html.Label("|" + tag.Name)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ArticleId })
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.ArticleId })
+
+                @Html.ActionLink("Details", "Details", new { id = item.ArticleId })
+
+                @Html.ActionLink("Published", "Published", new { id = item.ArticleId })
+
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DisplayArticles">
+        <s:complexType />
+      </s:element>
+      <s:element name="DisplayArticlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisplayArticlesResult" type="tns:ArrayOfArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArticleDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArticleDTO" nillable="true" type="tns:ArticleDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArticleDTO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ArticleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lead" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfArticleTagDTO" />
+          <s:element minOccurs="1" maxOccurs="1" name="Published" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfArticleTagDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArticleTagDTO" nillable="true" type="tns:ArticleTagDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArticleTagDTO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TagId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmptyArticle">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmptyArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmptyArticleResult" type="tns:AddArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddArticleDTO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ArticleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lead" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfAddArticleTagDTO" />
+          <s:element minOccurs="1" maxOccurs="1" name="Published" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAddArticleTagDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddArticleTagDTO" nillable="true" type="tns:AddArticleTagDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddArticleTagDTO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TagId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="article" type="tns:AddArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddArticleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EditArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="article" type="tns:AddArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditArticleResult" type="tns:AddArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idArticle" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArticleResult" type="tns:ArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArticleToEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idArticle" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArticleToEditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArticleToEditResult" type="tns:AddArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArticleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PublishedArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishedArticleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListPublishedArticles">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListPublishedArticlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListPublishedArticlesResult" type="tns:ArrayOfArticleDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DisplayArticlesSoapIn">
+    <wsdl:part name="parameters" element="tns:DisplayArticles" />
+  </wsdl:message>
+  <wsdl:message name="DisplayArticlesSoapOut">
+    <wsdl:part name="parameters" element="tns:DisplayArticlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmptyArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmptyArticle" />
+  </wsdl:message>
+  <wsdl:message name="GetEmptyArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmptyArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddArticle" />
+  </wsdl:message>
+  <wsdl:message name="AddArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:EditArticle" />
+  </wsdl:message>
+  <wsdl:message name="EditArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:EditArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArticle" />
+  </wsdl:message>
+  <wsdl:message name="FindArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArticleToEditSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArticleToEdit" />
+  </wsdl:message>
+  <wsdl:message name="FindArticleToEditSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArticleToEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteArticle" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishedArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishedArticle" />
+  </wsdl:message>
+  <wsdl:message name="PublishedArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishedArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListPublishedArticlesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListPublishedArticles" />
+  </wsdl:message>
+  <wsdl:message name="ListPublishedArticlesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListPublishedArticlesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceArticleAppSoap">
+    <wsdl:operation name="DisplayArticles">
+      <wsdl:input message="tns:DisplayArticlesSoapIn" />
+      <wsdl:output message="tns:DisplayArticlesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmptyArticle">
+      <wsdl:input message="tns:GetEmptyArticleSoapIn" />
+      <wsdl:output message="tns:GetEmptyArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddArticle">
+      <wsdl:input message="tns:AddArticleSoapIn" />
+      <wsdl:output message="tns:AddArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditArticle">
+      <wsdl:input message="tns:EditArticleSoapIn" />
+      <wsdl:output message="tns:EditArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArticle">
+      <wsdl:input message="tns:FindArticleSoapIn" />
+      <wsdl:output message="tns:FindArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArticleToEdit">
+      <wsdl:input message="tns:FindArticleToEditSoapIn" />
+      <wsdl:output message="tns:FindArticleToEditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArticle">
+      <wsdl:input message="tns:DeleteArticleSoapIn" />
+      <wsdl:output message="tns:DeleteArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishedArticle">
+      <wsdl:input message="tns:PublishedArticleSoapIn" />
+      <wsdl:output message="tns:PublishedArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPublishedArticles">
+      <wsdl:input message="tns:ListPublishedArticlesSoapIn" />
+      <wsdl:output message="tns:ListPublishedArticlesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceArticleAppSoap" type="tns:WebServiceArticleAppSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisplayArticles">
+      <soap:operation soapAction="http://tempuri.org/DisplayArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmptyArticle">
+      <soap:operation soapAction="http://tempuri.org/GetEmptyArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArticle">
+      <soap:operation soapAction="http://tempuri.org/AddArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditArticle">
+      <soap:operation soapAction="http://tempuri.org/EditArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArticle">
+      <soap:operation soapAction="http://tempuri.org/FindArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArticleToEdit">
+      <soap:operation soapAction="http://tempuri.org/FindArticleToEdit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArticle">
+      <soap:operation soapAction="http://tempuri.org/DeleteArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishedArticle">
+      <soap:operation soapAction="http://tempuri.org/PublishedArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPublishedArticles">
+      <soap:operation soapAction="http://tempuri.org/ListPublishedArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceArticleAppSoap12" type="tns:WebServiceArticleAppSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisplayArticles">
+      <soap12:operation soapAction="http://tempuri.org/DisplayArticles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmptyArticle">
+      <soap12:operation soapAction="http://tempuri.org/GetEmptyArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArticle">
+      <soap12:operation soapAction="http://tempuri.org/AddArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditArticle">
+      <soap12:operation soapAction="http://tempuri.org/EditArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArticle">
+      <soap12:operation soapAction="http://tempuri.org/FindArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArticleToEdit">
+      <soap12:operation soapAction="http://tempuri.org/FindArticleToEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArticle">
+      <soap12:operation soapAction="http://tempuri.org/DeleteArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishedArticle">
+      <soap12:operation soapAction="http://tempuri.org/PublishedArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPublishedArticles">
+      <soap12:operation soapAction="http://tempuri.org/ListPublishedArticles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceArticleApp">
+    <wsdl:port name="WebServiceArticleAppSoap" binding="tns:WebServiceArticleAppSoap">
+      <soap:address location="http://localhost:57238/WebServiceArticleApp.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceArticleAppSoap12" binding="tns:WebServiceArticleAppSoap12">
+      <soap12:address location="http://localhost:57238/WebServiceArticleApp.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,66 @@
+﻿@model ClientArticleApp.localhost.ArticleDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details article</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+        @foreach(ClientArticleApp.localhost.ArticleTagDTO tag in Model.Tags) { 
+            <dt>
+                @Html.DisplayNameFor(model => tag.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => tag)
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
